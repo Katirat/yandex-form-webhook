@@ -9,7 +9,13 @@ def webhook():
     telegram_token = '7908641572:AAEfO9aBUbE26xA5BF_XjQQnpSk3-QFjac4'
     chat_id = '-1002447941825'
     message = f"Форма заполнена! Данные: {data}"
-requests.post(f'https://api.telegram.org/bot{telegram_token}/sendMessage', json={'chat_id': chat_id, 'text': message})
+
+    # Отправляем сообщение в Telegram
+    response = requests.post(f'https://api.telegram.org/bot{telegram_token}/sendMessage', json={'chat_id': chat_id, 'text': message})
+    
+    if response.status_code != 200:
+        return f"Ошибка отправки сообщения. Код: {response.status_code}", 500
+
     return 'OK', 200
 
 if __name__ == '__main__':
