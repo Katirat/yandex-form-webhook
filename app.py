@@ -9,7 +9,7 @@ def webhook():
     telegram_token = '7908641572:AAEfO9aBUbE26xA5BF_XjQQnpSk3-QFjac4'
     chat_id = '-1002447941825'
     message = f"Форма заполнена! Данные: {data}"
-    requests.post(f'https://api.telegram.org/bot{telegram_token}/sendMessage', data={'chat_id': chat_id, 'text': message})
+requests.post(f'https://api.telegram.org/bot{telegram_token}/sendMessage', json={'chat_id': chat_id, 'text': message})
     return 'OK', 200
 
 if __name__ == '__main__':
